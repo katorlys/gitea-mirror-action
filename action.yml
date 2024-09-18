@@ -1,0 +1,81 @@
+name: 'Github Mirror To Gitea'
+description: 'Mirror your GitHub repositories to your Gitea server.'
+author: 'Katorly'
+branding:
+  icon: 'copy'
+  color: 'orange'
+inputs:
+  GITHUB_USERNAME:
+    description: 'Your GitHub username'
+    required: true
+  GITHUB_PAT:
+    description: 'Your GitHub personal access token'
+    required: true
+  GITEA_HOST:
+    description: 'Your Gitea hostname, starts with `http://` or `https://`'
+    required: true
+  GITEA_USERNAME:
+    description: 'Your Gitea username'
+    required: true
+  GITEA_PAT:
+    description: 'Your Gitea personal access token'
+    required: true
+  CREATE_ORG:
+    description: 'Create a new organization in Gitea when the repository username is different from your GitHub username'
+    required: false
+    default: true
+  REMOVE_INEXIST_REPO:
+    description: 'Remove all repositories in Gitea owned by the user that do not exist in GitHub'
+    required: false
+    default: false
+  REMOVE_EXISTING_REPO:
+    description: 'Remove existing repositories in Gitea that have the same name as the repositories in GitHub'
+    required: false
+    default: false
+  MIRROR_OWNED:
+    description: 'Mirror the repositories you own'
+    required: false
+    default: true
+  MIRROR_FORKED:
+    description: 'Mirror the repositories you forked'
+    required: false
+    default: true
+  MIRROR_STARRED:
+    description: 'Mirror the repositories you starred'
+    required: false
+    default: false
+  MIRROR_COLLABORATOR:
+    description: 'Mirror the repositories that you have collaborator access'
+    required: false
+    default: false
+  MIRROR_ORGANIZATION:
+    description: 'Mirror the repositories in organizations that you are a member'
+    required: false
+    default: false
+  MODE:
+    description: '`whitelist` or `blacklist` to only mirror or skip repositories that match the regex'
+    required: false
+    default: 'blacklist'
+  REGEX:
+    description: 'Regex list'
+    required: false
+    default: 'EpicGames/.*,NVIDIAGameWorks/.*'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.GITHUB_USERNAME }}
+    - ${{ inputs.GITHUB_PAT }}
+    - ${{ inputs.GITEA_HOST }}
+    - ${{ inputs.GITEA_USERNAME }}
+    - ${{ inputs.GITEA_PAT }}
+    - ${{ inputs.CREATE_ORG }}
+    - ${{ inputs.REMOVE_INEXIST_REPO }}
+    - ${{ inputs.REMOVE_EXISTING_REPO }}
+    - ${{ inputs.MIRROR_OWNED }}
+    - ${{ inputs.MIRROR_FORKED }}
+    - ${{ inputs.MIRROR_STARRED }}
+    - ${{ inputs.MIRROR_COLLABORATOR }}
+    - ${{ inputs.MIRROR_ORGANIZATION }}
+    - ${{ inputs.MODE }}
+    - ${{ inputs.REGEX }}
