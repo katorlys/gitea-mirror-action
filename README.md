@@ -61,14 +61,15 @@ jobs:
           GITEA_HOST: ${{ secrets.GITEA_HOST }}
           GITEA_USERNAME: ${{ secrets.GITEA_USERNAME }}
           GITEA_PAT: ${{ secrets.GITEA_PAT }}
-          CONFIG_CREATE_ORG: true
-          CONFIG_REMOVE_INEXIST_REPO: false
-          CONFIG_REMOVE_EXISTING_REPO: false
-          CONFIG_MIRROR_OWNED: true
-          CONFIG_MIRROR_FORKED: true
-          CONFIG_MIRROR_STARRED: false
-          CONFIG_MIRROR_COLLABORATOR: false
-          CONFIG_MIRROR_ORGANIZATION: false
+          CREATE_ORG: true
+          REMOVE_INEXIST_REPO: false
+          REMOVE_EXISTING_REPO: false
+          MIRROR_OWNED: true
+          MIRROR_PRIVATE: true
+          MIRROR_FORKED: true
+          MIRROR_STARRED: false
+          MIRROR_COLLABORATOR: false
+          MIRROR_ORGANIZATION: false
           RULE_MODE: 'blacklist'
           RULE_REGEX: 'EpicGames/.*,NVIDIAGameWorks/.*'
 ```
@@ -96,6 +97,7 @@ You can customize these options for mirroring:
 | REMOVE_INEXIST_REPO  | Remove all repositories in Gitea owned by the user (including those in organizations) that do not exist in GitHub.                                                                                                                                       |
 | REMOVE_EXISTING_REPO | Remove existing repositories in Gitea. This will only remove the repositories that have the same name as the repositories in GitHub. You may not want to enable this option, since Gitea will automatically fetch the mirror repositories every 8 hours. |
 | MIRROR_OWNED         | Mirror the repositories you own.                                                                                                                                                                                                                         |
+| MIRROR_PRIVATE       | Mirror private repositories you own.                                                                                                                                                                                                                     |
 | MIRROR_FORKED        | Mirror the repositories you forked.                                                                                                                                                                                                                      |
 | MIRROR_STARRED       | Mirror the repositories you starred.                                                                                                                                                                                                                     |
 | MIRROR_COLLABORATOR  | Mirror the repositories that you have collaborator access. See: https://docs.github.com/zh/rest/repos/repos#list-repositories-for-the-authenticated-user                                                                                                 |
