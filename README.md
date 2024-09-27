@@ -56,8 +56,8 @@ jobs:
       - name: GitHub mirror Gitea
         uses: katorlys/gitea-mirror-action@v1
         with:
-          GITHUB_USERNAME: ${{ secrets.GITHUB_USERNAME }}
-          GITHUB_PAT: ${{ secrets.GITHUB_PAT }}
+          GITHUB_USERNAME: ${{ secrets.GH_USERNAME }}
+          GITHUB_PAT: ${{ secrets.GH_PAT }}
           GITEA_HOST: ${{ secrets.GITEA_HOST }}
           GITEA_USERNAME: ${{ secrets.GITEA_USERNAME }}
           GITEA_PAT: ${{ secrets.GITEA_PAT }}
@@ -70,8 +70,8 @@ jobs:
           MIRROR_STARRED: false
           MIRROR_COLLABORATOR: false
           MIRROR_ORGANIZATION: false
-          RULE_MODE: 'blacklist'
-          RULE_REGEX: 'EpicGames/.*,NVIDIAGameWorks/.*'
+          MODE: 'blacklist'
+          REGEX: 'EpicGames/.*,NVIDIAGameWorks/.*'
 ```
 
 
